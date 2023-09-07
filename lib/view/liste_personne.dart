@@ -11,36 +11,41 @@ class ListPersonne extends StatefulWidget {
 }
 
 class _ListPersonneState extends State<ListPersonne> {
+  // createConversation
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: FirebaseHelper().cloud_users.snapshots(),
-        builder: (context,snap){
-          if(snap.data == null){
-            return Center(child: Text("Aucun utilisateur"),);
-          }else {
+        builder: (context, snap) {
+          if (snap.data == null) {
+            return Center(
+              child: Text("Aucun utilisateur"),
+            );
+          } else {
             List documents = snap.data!.docs;
             return ListView.builder(
-              itemCount: documents.length,
-                itemBuilder: (context,index){
-                MyUser users = MyUser.bdd(documents[index]);
-                return Card(
-                  elevation: 5,
-                  color: Colors.purple,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 20,
-                      backgroundImage: NetworkImage(users.avatar!),
-                    ),
-                    title: Text(users.fullName),
-                    subtitle: Text(users.email),
-                    trailing: Icon(Icons.favorite),
-                  ),
-                );
-                }
-            );
+                itemCount: documents.length,
+                itemBuilder: (context, index) {
+                  MyUser users = MyUser.bdd(documents[index]);
+                  return GestureDetector(
+                      onTap: () {
+                        FirebaseHelper().createConversation(users.uid);
+                      },
+                      child: Card(
+                        elevation: 5,
+                        color: Colors.purple,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            radius: 20,
+                            backgroundImage: NetworkImage(users.avatar!),
+                          ),
+                          title: Text(users.fullName),
+                          subtitle: Text(users.email),
+                          trailing: Icon(Icons.favorite),
+                        ),
+                      ));
+                });
           }
-        }
-    );
+        });
   }
 }
