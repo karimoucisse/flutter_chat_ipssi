@@ -23,22 +23,25 @@ class _ChatBoxState extends State<ChatBox> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
         ),
+
         // extendBodyBehindAppBar: true,
         body: Stack(
           children: [
             MyBackGroundPage(),
-            TextField(
-                controller: message,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  prefixIcon: Icon(Icons.person),
+            Align(
+                alignment: Alignment.bottomCenter,
+                child: TextField(
+                    controller: message,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: Icon(Icons.message),
 
-                  hintText: "Entrer votre message",
-                  // border: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.circular(15)
-                  // )
-                ))
+                      hintText: "Entrer votre message",
+                      // border: OutlineInputBorder(
+                      //     borderRadius: BorderRadius.circular(15)
+                      // )
+                    )))
           ],
         ));
   }
