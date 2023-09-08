@@ -78,12 +78,13 @@ class FirebaseHelper {
     cloud_conversations.doc(uid).set(data);
   }
 
-  Future<MyConversation> createMessage(user2Uid) async {
-    String _id = moi.uid + user2Uid;
+  Future<MyConversation> createMessage(text, conversationId) async {
+    // String _id = moi.uid + user2Uid;
     Map<String, dynamic> data = {
-      "_id": _id,
-      "user1": moi.uid,
-      "user2": user2Uid,
+      // "_id": _id,
+      "text": text,
+      "conversationID": conversationId,
+      "sendAt": DateTime.now(),
     };
     return addMessage(_id, data);
     // getConversation(_id);

@@ -21,7 +21,6 @@ class MyMessage {
     text = map["TEXT"];
     userid = map["USERID"];
     conversationId = map["CONVERSATIONID"];
-    conversationId = map["CONVERSATIONID"];
     sendAt = map["SENDAT"];
   }
 }
