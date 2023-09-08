@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firstbd233/model/my_message.dart';
 import 'package:firstbd233/model/my_user.dart';
 
 import '../constante/constant.dart';
@@ -70,20 +71,27 @@ class FirebaseHelper {
       "user1": moi.uid,
       "user2": user2Uid,
     };
-    return addConversation(_id, data);
-    // getConversation(_id);
+    addConversation(_id, data);
+    return getConversation(_id);
   }
 
   addConversation(String uid, Map<String, dynamic> data) {
     cloud_conversations.doc(uid).set(data);
   }
 
-  Future<MyConversation> createMessage(text, conversationId) async {
+  Future<MyConversation> getConversation(String uid) async {
+    DocumentSnapshot snapshot = await cloud_conversations.doc(uid).get();
+    return MyConversation.bdd(snapshot);
+  }
+
+
+  Future<MyMessage> createMessage(text) async {
     // String _id = moi.uid + conversationId;
     Map<String, dynamic> data = {
       // "_id": _id,
+      "userId": moi.uid,
       "text": text,
-      "conversationID": conversationId,
+      "conversationID": myConversation._id,
       "sendAt": DateTime.now(),
     };
     return addMessage(data);

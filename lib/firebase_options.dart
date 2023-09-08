@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -46,31 +43,41 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCFfZmwN0l1dzxwf4TMB5EuNQtKz6AN-pQ',
+    appId: '1:258607022248:web:54ad851e83b278dd4b029d',
+    messagingSenderId: '258607022248',
+    projectId: 'cours-flutter-ipssi',
+    authDomain: 'cours-flutter-ipssi.firebaseapp.com',
+    storageBucket: 'cours-flutter-ipssi.appspot.com',
+    measurementId: 'G-QXX7WE2VQ9',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDHlXsnhb5UiuWLRTeYA91Ib4tcCns_kQo',
-    appId: '1:1020270970976:android:a806a0acaecec75a995b05',
-    messagingSenderId: '1020270970976',
-    projectId: 'projetipssi1',
-    storageBucket: 'projetipssi1.appspot.com',
+    apiKey: 'AIzaSyBVlAtTmCE3RM13bNYKPXFwyUiW1Cah2iw',
+    appId: '1:258607022248:android:20ec978d2234967a4b029d',
+    messagingSenderId: '258607022248',
+    projectId: 'cours-flutter-ipssi',
+    storageBucket: 'cours-flutter-ipssi.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDojkTSiwXgB3Q_LWnAvQEMJGlFQnFp86c',
-    appId: '1:1020270970976:ios:9f6b54d6ac5d212b995b05',
-    messagingSenderId: '1020270970976',
-    projectId: 'projetipssi1',
-    storageBucket: 'projetipssi1.appspot.com',
-    iosClientId: '1020270970976-tojtpnnk58t5jsumma5tfmr285n5hpcu.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBnnxqmEUS6630k_M3-hbMv8g9rBIkIWR8',
+    appId: '1:258607022248:ios:11102267eefaded64b029d',
+    messagingSenderId: '258607022248',
+    projectId: 'cours-flutter-ipssi',
+    storageBucket: 'cours-flutter-ipssi.appspot.com',
+    iosClientId: '258607022248-r5dc94tv7m7pcp4qc8f8d4o3lsd6cosr.apps.googleusercontent.com',
     iosBundleId: 'com.example.firstbd233',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDojkTSiwXgB3Q_LWnAvQEMJGlFQnFp86c',
-    appId: '1:1020270970976:ios:7018aa362820aeb3995b05',
-    messagingSenderId: '1020270970976',
-    projectId: 'projetipssi1',
-    storageBucket: 'projetipssi1.appspot.com',
-    iosClientId: '1020270970976-ubomfabggaa9oule9oiuh2pk6fbrbof2.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBnnxqmEUS6630k_M3-hbMv8g9rBIkIWR8',
+    appId: '1:258607022248:ios:0ec03f6c509197e84b029d',
+    messagingSenderId: '258607022248',
+    projectId: 'cours-flutter-ipssi',
+    storageBucket: 'cours-flutter-ipssi.appspot.com',
+    iosClientId: '258607022248-44b2ktunogee6a62lvgvubcvq8epm1a8.apps.googleusercontent.com',
     iosBundleId: 'com.example.firstbd233.RunnerTests',
   );
 }

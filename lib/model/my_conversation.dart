@@ -12,7 +12,7 @@ class MyConversation {
   }
 
   MyConversation.bdd(DocumentSnapshot snapshot) {
-    // _id = snapshot.id;
+    _id = snapshot.id;
     Map<String, dynamic> map = snapshot.data() as Map<String, dynamic>;
     user1 = map["USER1"];
     user2 = map["USER2"];

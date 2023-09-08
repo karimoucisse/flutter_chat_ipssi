@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constante/constant.dart';
+import '../controller/firebase_helper.dart';
 import 'my_background.dart';
 
 class ChatBox extends StatefulWidget {
@@ -30,14 +32,29 @@ class _ChatBoxState extends State<ChatBox> {
             MyBackGroundPage(),
             Align(
                 alignment: Alignment.bottomCenter,
-                child: TextField(
-                    controller: message,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.message),
-                      hintText: "Entrer votre message",
-                    )))
+                child: Stack(
+                  children: [
+                    TextField(
+                        controller: message,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          prefixIcon: Icon(Icons.message),
+                          hintText: "Entrer votre message",
+                        )
+                    ),
+                    ElevatedButton(
+                        onPressed: (){
+                          ScaffoldMessenger.of(context).clearSnackBars();
+                          //enregistrer dans la base de donnée
+                          FirebaseHelper().createMessage(message.text);
+                        },
+                        child: Text("Enregistrement")
+                    )
+                  ],
+                )
+
+            )
           ],
         ));
   }

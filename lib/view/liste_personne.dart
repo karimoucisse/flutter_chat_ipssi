@@ -3,6 +3,7 @@ import 'package:firstbd233/controller/firebase_helper.dart';
 import 'package:firstbd233/model/my_user.dart';
 import 'package:flutter/material.dart';
 
+import '../constante/constant.dart';
 import 'chat_box.dart';
 
 class ListPersonne extends StatefulWidget {
@@ -31,7 +32,11 @@ class _ListPersonneState extends State<ListPersonne> {
                   MyUser users = MyUser.bdd(documents[index]);
                   return GestureDetector(
                       onTap: () {
-                        FirebaseHelper().createConversation(users.uid);
+                        FirebaseHelper().createConversation(users.uid).then((value){
+                        setState(() {
+                          myConversation = value;
+                        });
+
                          Navigator.push(context, MaterialPageRoute(
                           builder: (context){
                             return ChatBox();
