@@ -47,7 +47,7 @@ class _ChatBoxState extends State<ChatBox> {
                         onPressed: (){
                           ScaffoldMessenger.of(context).clearSnackBars();
                           //enregistrer dans la base de donnée
-                          FirebaseHelper().createMessage(message.text);
+                          FirebaseHelper().createMessage(message.text,  myConversation);
                         },
                         child: Text("Enregistrement")
                     )

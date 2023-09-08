@@ -33,16 +33,15 @@ class _ListPersonneState extends State<ListPersonne> {
                   return GestureDetector(
                       onTap: () {
                         FirebaseHelper().createConversation(users.uid).then((value){
-                        setState(() {
-                          myConversation = value;
+                          print(value);
                         });
-
-                         Navigator.push(context, MaterialPageRoute(
-                          builder: (context){
-                            return ChatBox();
-                          }
-                      ));
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return ChatBox();
+                            }
+                        ));
                       },
+
                       child: Card(
                         elevation: 5,
                         color: Colors.purple,
@@ -55,8 +54,8 @@ class _ListPersonneState extends State<ListPersonne> {
                           subtitle: Text(users.email),
                           trailing: Icon(Icons.favorite),
                         ),
-                      ));
-                });
+                      )
+                  );});
           }
         });
   }

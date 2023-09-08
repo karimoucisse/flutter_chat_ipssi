@@ -14,7 +14,7 @@ class FirebaseHelper {
   final cloud_users = FirebaseFirestore.instance.collection("UTILISATEURS");
   final cloud_conversations =
       FirebaseFirestore.instance.collection("CONVERSATIONS");
-  final cloud_message = FirebaseFirestore.instance.collection("MESSAGE");
+  final cloud_message = FirebaseFirestore.instance.collection("MESSAGES");
   final storage = FirebaseStorage.instance;
 
   //inscrire un utiisateur
@@ -65,33 +65,36 @@ class FirebaseHelper {
   }
 
   Future<MyConversation> createConversation(user2Uid) async {
-    String _id = moi.uid + user2Uid;
+    String id = moi.uid + user2Uid;
     Map<String, dynamic> data = {
-      "_id": _id,
+      "uid": id,
       "user1": moi.uid,
       "user2": user2Uid,
     };
-    addConversation(_id, data);
-    return getConversation(_id);
+    addConversation(id, data);
+    print(getConversation(id));
+    return getConversation(id);
   }
 
   addConversation(String uid, Map<String, dynamic> data) {
     cloud_conversations.doc(uid).set(data);
   }
 
-  Future<MyConversation> getConversation(String uid) async {
-    DocumentSnapshot snapshot = await cloud_conversations.doc(uid).get();
+  Future<MyConversation> getConversation(String id) async {
+    DocumentSnapshot snapshot = await cloud_conversations.doc(id).get();
     return MyConversation.bdd(snapshot);
   }
 
 
-  Future<MyMessage> createMessage(text) async {
+  Future<MyMessage> createMessage(text, conversationId) async {
     // String _id = moi.uid + conversationId;
+    print('dans le create message');
+    print(myConversation);
     Map<String, dynamic> data = {
       // "_id": _id,
       "userId": moi.uid,
       "text": text,
-      "conversationID": myConversation._id,
+      "conversationID": myConversation,
       "sendAt": DateTime.now(),
     };
     return addMessage(data);
