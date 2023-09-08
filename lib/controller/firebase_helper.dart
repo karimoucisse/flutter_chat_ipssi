@@ -13,6 +13,7 @@ class FirebaseHelper {
   final cloud_users = FirebaseFirestore.instance.collection("UTILISATEURS");
   final cloud_conversations =
       FirebaseFirestore.instance.collection("CONVERSATIONS");
+  final cloud_message = FirebaseFirestore.instance.collection("MESSAGE");
   final storage = FirebaseStorage.instance;
 
   //inscrire un utiisateur
@@ -75,6 +76,21 @@ class FirebaseHelper {
 
   addConversation(String uid, Map<String, dynamic> data) {
     cloud_conversations.doc(uid).set(data);
+  }
+
+  Future<MyConversation> createMessage(user2Uid) async {
+    String _id = moi.uid + user2Uid;
+    Map<String, dynamic> data = {
+      "_id": _id,
+      "user1": moi.uid,
+      "user2": user2Uid,
+    };
+    return addMessage(_id, data);
+    // getConversation(_id);
+  }
+
+  addMessage(String uid, Map<String, dynamic> data) {
+    cloud_message.doc(uid).set(data);
   }
 
   // Future<MyConversation> getConversation(String uid) async {

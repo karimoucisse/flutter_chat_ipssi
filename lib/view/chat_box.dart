@@ -36,11 +36,7 @@ class _ChatBoxState extends State<ChatBox> {
                       filled: true,
                       fillColor: Colors.white,
                       prefixIcon: Icon(Icons.message),
-
                       hintText: "Entrer votre message",
-                      // border: OutlineInputBorder(
-                      //     borderRadius: BorderRadius.circular(15)
-                      // )
                     )))
           ],
         ));
