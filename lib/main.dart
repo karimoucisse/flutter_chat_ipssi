@@ -252,18 +252,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       controller: page,
                       children: [
-                        Center(child: Lottie.asset("assets/01.json")),
-                        Center(child: Lottie.asset("assets/02.json")),
-                        Center(child: Lottie.asset("assets/03.json")),
+                        // Center(child: Lottie.asset("assets/01.json")),
+                        // Center(child: Lottie.asset("assets/02.json")),
+                        // Center(child: Lottie.asset("assets/03.json")),
                         bodyPage(),
                       ],
                     ),
                   ),
-                  (position == 3)?Container():DotsIndicator(
+                  // (position == 3)?Container():DotsIndicator(
 
-                    position: position,
-                      dotsCount: 4
-                  )
+                  //   position: position,
+                  //     dotsCount: 4
+                  // )
                 ],
               ),
             ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'my_background.dart';
+
 class ChatBox extends StatefulWidget {
   const ChatBox({super.key});
 
@@ -8,6 +10,7 @@ class ChatBox extends StatefulWidget {
 }
 
 class _ChatBoxState extends State<ChatBox> {
+  TextEditingController message = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +24,22 @@ class _ChatBoxState extends State<ChatBox> {
           // the App.build method, and use it to set our appbar title.
         ),
         // extendBodyBehindAppBar: true,
-        body: const Text("Hello world"));
+        body: Stack(
+          children: [
+            MyBackGroundPage(),
+            TextField(
+                controller: message,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  prefixIcon: Icon(Icons.person),
+
+                  hintText: "Entrer votre message",
+                  // border: OutlineInputBorder(
+                  //     borderRadius: BorderRadius.circular(15)
+                  // )
+                ))
+          ],
+        ));
   }
 }
